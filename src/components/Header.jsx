@@ -43,7 +43,10 @@ export default function Header() {
                                 </li>
                             )}
                         </ul>
-                        <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <ul className="navbar-nav ms-auto mb-2 mb-lg-0 ">
+                            <li className="nav-item p-2">
+                                <button className="badge rounded-pill text-bg-success">Attiva Modalità Budget</button>
+                            </li>
                             <li className="nav-item">
                                 <NavLink className="nav-link" to={"/login"}><i className="bi bi-person-fill"></i></NavLink>
                             </li>
