@@ -1,5 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from "../assets/image/logo.png"
+import { useBudgetMode } from "../context/BudgetContext";
 
 export default function Header() {
     const navBarLinks = [
@@ -25,6 +26,8 @@ export default function Header() {
         }
     ];
 
+    const { budgetMode, toggleBudgetMode } = useBudgetMode();
+
     return (
         <header>
             <nav className="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
@@ -45,7 +48,7 @@ export default function Header() {
                         </ul>
                         <ul className="navbar-nav ms-auto mb-2 mb-lg-0 ">
                             <li className="nav-item p-2">
-                                <button className="badge rounded-pill text-bg-success">Attiva Modalità Budget</button>
+                                <button onClick={toggleBudgetMode} className={`badge rounded-pill text-bg-${budgetMode ? "danger" : "success"}`}>{budgetMode ? "Disattiva" : "Attiva"} Modalità Budget</button>
                             </li>
                             <li className="nav-item">
                                 <NavLink className="nav-link" to={"/login"}><i className="bi bi-person-fill"></i></NavLink>
@@ -57,6 +60,6 @@ export default function Header() {
                     </div>
                 </div>
             </nav>
-        </header>
+        </header >
     )
 }
