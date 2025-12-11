@@ -10,28 +10,31 @@ import Login from './pages/Login'
 import Cart from './pages/Cart'
 import NotFound from './pages/NotFound'
 import './App.css'
+import { BudgetProvider } from './context/BudgetContext'
 
 
 function App() {
 
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route element={<DefaultLayout />}>
-            <Route path='/' element={<Home />} />
-            <Route path='/prodotti'>
-              <Route path='' element={<Products />} />
-              <Route path=':id' element={<SingleProduct />} />
+      <BudgetProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route element={<DefaultLayout />}>
+              <Route path='/' element={<Home />} />
+              <Route path='/prodotti'>
+                <Route path='' element={<Products />} />
+                <Route path=':id' element={<SingleProduct />} />
+              </Route>
+              <Route path='/contatti' element={<Contacts />} />
+              <Route path='/chi-siamo' element={<About />} />
+              <Route path='/login' element={<Login />} />
+              <Route path='/cart' element={<Cart />} />
+              <Route path='*' element={<NotFound />} />
             </Route>
-            <Route path='/contatti' element={<Contacts />} />
-            <Route path='/chi-siamo' element={<About />} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/cart' element={<Cart />} />
-            <Route path='*' element={<NotFound />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+          </Routes>
+        </BrowserRouter>
+      </BudgetProvider>
     </>
   )
 }
