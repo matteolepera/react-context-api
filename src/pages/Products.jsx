@@ -1,19 +1,26 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Card from "../components/Card";
+import { useBudgetMode } from "../context/BudgetContext";
 
 
 export default function Products() {
     const [products, setProducts] = useState([]);
+    const { budgetMode, toggleBudgetMode } = useBudgetMode();
 
     useEffect(() => {
         fetchProducts();
-    }, []);
+    }, [budgetMode]);
 
     function fetchProducts() {
         axios.get("https://fakestoreapi.com/products")
             .then((resp) => {
-                setProducts(resp.data);
+                if (budgetMode) {
+                    setProducts(resp.data.filter(product => product.price < 30))
+                } else {
+                    setProducts(resp.data);
+                }
+
             })
     }
     return (

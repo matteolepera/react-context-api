@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom"
-import BackButton from "../components/BackButton";
+import { useParams, useNavigate, Link } from "react-router-dom"
 
 export default function SingleProduct() {
     const { id } = useParams();
@@ -51,7 +50,7 @@ export default function SingleProduct() {
         <div className="container p-3">
             {product && (
                 <>
-                    <BackButton title={"Torna ai prodotti"} />
+                    <Link className="btn btn-dark me-3" to={"/prodotti"}> Torna ai prodotti </Link>
                     <div className="product-banner">
                         <div className="product-top">
                             <h2 className="text-white mt-5">{product.title}</h2>
